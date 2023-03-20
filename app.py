@@ -6,8 +6,7 @@ import plotly.express as px
 
 #%%
 #Load the data
-art_df = pd.read_csv("data/public-art.csv", sep=';')
-art_df.head(10)
+art_df = pd.read_csv("data/public-art.csv", sep=';').query('Status == "In place"')
 neighbourhoods = list(art_df["Neighbourhood"].unique())
 art_types = list(art_df["Type"].unique())
 
@@ -15,14 +14,16 @@ art_types = list(art_df["Type"].unique())
 #Build our components
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
-title = dcc.Markdown(children='# VanArt: Discover public Art')
+title = dcc.Markdown('# VanArt: Discover public Art')
 graph = dcc.Graph(figure = {})
 dropdown1 = dcc.Dropdown(options = art_types,
-                         value ='Mural',
-                         clearable=False)
+                         value =['Mural'],
+                         clearable=False,
+                         multi=True)
 dropdown2 = dcc.Dropdown(options = neighbourhoods,
                          value ='Downtown',
-                         clearable=False)
+                         clearable=False,
+                         multi=True)
 
 #Customize layout
 app.layout = html.Div([title,dropdown1, graph, dropdown2])
@@ -44,7 +45,11 @@ app.layout = html.Div([title,dropdown1, graph, dropdown2])
 def update_graph(art_type):
     print(art_type)
     print(type(art_type))
-    data = art_df.loc[art_df["Type"].isin([art_type])]
+
+    #Filter dataset based on user inputs
+    data = art_df.loc[art_df["Type"].isin(art_type)]
+    
+    #Graph figure
     fig = px.bar(data, x="Neighbourhood", color = "Type", barmode = "stack")
     return fig
 
