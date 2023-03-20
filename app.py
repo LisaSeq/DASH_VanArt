@@ -8,24 +8,46 @@ import plotly.express as px
 #Load the data
 art_df = pd.read_csv("data/public-art.csv", sep=';')
 art_df.head(10)
-cities = list(art_df["Neighbourhood"].unique())
-# %%
+neighbourhoods = list(art_df["Neighbourhood"].unique())
+art_types = list(art_df["Type"].unique())
 
+# %%
 #Build our components
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
-mytitle = dcc.Markdown(children = 'VanArt: Discover public Art')
-mygraph = dcc.Graph(figure={})
-dropdown = dcc.Dropdown(options = cities,
-                        values='Downtown',
-                        clearable=False)
 
-#app.layout = html.Div('VanArt: Discover public Art')
+title = dcc.Markdown(children='# VanArt: Discover public Art')
+graph = dcc.Graph(figure = {})
+dropdown1 = dcc.Dropdown(options = art_types,
+                         value ='Mural',
+                         clearable=False)
+dropdown2 = dcc.Dropdown(options = neighbourhoods,
+                         value ='Downtown',
+                         clearable=False)
 
 #Customize layout
+app.layout = html.Div([title,dropdown1, graph, dropdown2])
 
+#Customize layout
+#app.layout = html.Div([mytitle,mygraph])
+    # [
+    #     html.H2("Title", className="diplay-4"),
+    #     html.Hr(),
+    # dbc.Navbar(dropdown)
+    # ]
+    # )
+
+#Callback for interactivity
+@app.callback(
+    Output(graph, component_property='figure'),
+    Input(dropdown1, component_property='value')
+)
+def update_graph(art_type):
+    print(art_type)
+    print(type(art_type))
+    data = art_df.loc[art_df["Type"].isin([art_type])]
+    fig = px.bar(data, x="Neighbourhood", color = "Type", barmode = "stack")
+    return fig
 
 if __name__ == '__main__':
     app.run_server(debug = True)
 
-dbc.Container()
-# %%
