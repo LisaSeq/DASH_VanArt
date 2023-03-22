@@ -25,11 +25,13 @@ art_types = art_df["Type"].dropna().unique().tolist()
 dropdown1 = dcc.Dropdown(options = art_types,
                          value =['Mural', 'Figurative'],
                          clearable=False,
-                         multi=True)
+                         multi=True,
+                         placeholder="Select an Art Type")
 dropdown2 = dcc.Dropdown(options = neighbourhoods,
                          value =['Downtown', 'West End'],
                          clearable=False,
-                         multi=True)
+                         multi=True, 
+                         placeholder="Select a Neighbourhood")
 
 #Create Table
 tbl_col_format = [ #Formatting columns to be included in table
@@ -40,25 +42,63 @@ tbl_col_format = [ #Formatting columns to be included in table
 ]
 
 table = dash_table.DataTable(
-    style_data={'whiteSpace': 'normal',
-                'height': 'auto'},
-                id='table',
-                page_size=10,
-                columns=tbl_col_format,  
-                data=art_df.to_dict('records'),
-            )
+    style_data={
+    'whiteSpace': 'normal',
+    'backgroundColor': 'rgb(255, 255, 255)',
+    'color': 'rgb(0, 123, 167)',
+    'height': 'auto'
+    },
+    id='table',
+    page_size=10,
+    columns=tbl_col_format,
+    style_header={
+    'backgroundColor': 'rgb(0, 123, 167)',
+    'color': 'white'
+    },
+    style_cell={
+        'fontFamily': 'Roboto, sans-serif',
+        'textAlign': 'center',
+    },
+    data=art_df.to_dict('records')
+    )
 
 #Customize layout
-app.layout = html.Div([title, dropdown1, dropdown2, graph, table])
-
-#Customize layout
-# app.layout = html.Div([mytitle,mygraph])
-#     [dbc.row
-#          html.H2("Title", className="diplay-4"),
-#          html.Hr(),
-#      dbc.Navbar(dropdown)
-#      ]
-#      )
+app.layout = dbc.Container([
+    html.H1(
+    'VanArt Lite: Discover Public Art in Vancouver!', 
+    style={
+    'textAlign': 'center'
+    }),
+    html.Br(),
+    html.Div(
+    'This dashboard will help you explore the types of public art displays in Vancouver. \
+        You can view a stacked bar graph showing what arts are available in what neigbourhoods and scroll \
+            through the selected art and their locations in the table below.',
+    style={
+    'textAlign': 'justified', 'color': 'gray'
+    }),
+    html.Br(),
+    dbc.Row([
+        dbc.Col(["Select an Art Type"]),
+        dbc.Col(["Select a Neighbourhood"])
+        ]),
+    dbc.Row([
+        dbc.Col([dropdown1]),
+        dbc.Col([dropdown2])
+        ]),
+    html.Br(),
+    html.H4(
+    'Section 1: Graph Displaying Art Type per Neighbourhood', 
+    style={'textAlign': 'center'}
+    ),
+    graph,
+    html.Br(), 
+    html.H4(
+    'Section 2: Table displaying details of Art Selected', 
+    style={'textAlign': 'center'}
+    ),
+    table
+    ])
 
 #Callback for interactivity
 @app.callback(
@@ -76,7 +116,11 @@ def update_graph(art_type, neighbourhood):
                       art_df["Neighbourhood"].isin(neighbourhood)]
     
     #Graph figure
-    fig = px.bar(data, x="Neighbourhood", color = "Type", barmode = "stack")
+    fig = px.bar(data, 
+                 x="Neighbourhood", 
+                 color = "Type", 
+                 barmode = "stack"
+                 )
 
     #Filter table
     tbl_data = data.to_dict('records')
