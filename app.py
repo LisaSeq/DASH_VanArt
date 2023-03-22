@@ -5,16 +5,14 @@ import pandas as pd
 import plotly.express as px
 from dash.dash_table.Format import Format, Align
 
-#%%
 #Load the data
 art_df = pd.read_csv("data/public-art.csv", sep=';').query('Status == "In place"')
 
-# %%
-#Build components
+#Setup app and layout/frontend
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
+server = app.server
 
-title = dcc.Markdown('# VanArt Lite: Discover public Art')
-
+#Build components
 #Add graph
 graph = dcc.Graph(figure = {})
 
@@ -94,7 +92,7 @@ app.layout = dbc.Container([
     graph,
     html.Br(), 
     html.H4(
-    'Section 2: Table displaying details of Art Selected', 
+    'Section 2: Table displaying details of Art selected', 
     style={'textAlign': 'center'}
     ),
     table
@@ -107,7 +105,7 @@ app.layout = dbc.Container([
     Input(dropdown1, component_property='value'),
     Input(dropdown2, component_property='value')
 )
-def update_graph(art_type, neighbourhood):
+def update_graph_table(art_type, neighbourhood):
     print(art_type)
     print(type(art_type))
 
@@ -129,4 +127,3 @@ def update_graph(art_type, neighbourhood):
 
 if __name__ == '__main__':
     app.run_server(debug = True)
-
