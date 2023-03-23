@@ -44,7 +44,7 @@ python app.py
 
 Interested in contributing? You are welcome to make contributions on our VanArt App!
 
-Please check out the [contributing](CONTRIBUTING.md) guidelines. Please note that this project is released with a [Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please check out the [contributing](CONTRIBUTING.md) guidelines. Please note that this project is released with a [Code of Conduct](https://github.com/LisaSeq/DASH_VanArt/blob/main/Code-of-conduct.md). By contributing to this project, you agree to abide by its terms.
 
 ## Data Used (Reference)
 
