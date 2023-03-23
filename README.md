@@ -46,6 +46,12 @@ Interested in contributing? You are welcome to make contributions on our VanArt 
 
 Please check out the [contributing](CONTRIBUTING.md) guidelines. Please note that this project is released with a [Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
 
+## Data Used (Reference)
+
+The data set we used to create this app is modified from [City of Vancouver Open Data Portal](https://opendata.vancouver.ca/explore/dataset/public-art/export/).
+
+Our modified data contains the feature about: the title of the artwork, the type of art (mural, statue, etc.), address of artwork, neighborhood where the work is located, latitude and longitude of the artwork, the photo URL, URL with artwork information, brief introduction to the artwork, and the year artwork was installed.
+
 ## License
 
 `DASH_VanArt_Lite` is licensed under the terms of the [MIT](LICENSE) license.
