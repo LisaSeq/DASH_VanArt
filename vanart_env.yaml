@@ -1,0 +1,11 @@
+name: vanart-lite
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - dash=2.8
+  - ipykernel
+  - vega_datasets
+  - altair
+  - dash-bootstrap-components
+prefix: C:\Users\lisaa\miniconda3\envs\dataviz-532
