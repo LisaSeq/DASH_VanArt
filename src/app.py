@@ -5,8 +5,9 @@ import pandas as pd
 import plotly.express as px
 from dash.dash_table.Format import Format, Align
 
+#%%
 #Load the data
-art_df = pd.read_csv("data/public-art.csv", sep=';').query('Status == "In place"')
+art_df = pd.read_csv("../data/public-art.csv", sep=';').query('Status == "In place"')
 
 #Setup app and layout/frontend
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
@@ -127,3 +128,4 @@ def update_graph_table(art_type, neighbourhood):
 
 if __name__ == '__main__':
     app.run_server(debug = True)
+# %%
