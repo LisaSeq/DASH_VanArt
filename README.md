@@ -1,27 +1,28 @@
 # DASH VanArt Lite
-Welcome to DASH VanArt Lite.
+Welcome to DASH VanArt Lite!
 
 ## Introduction
 
 Public art is an important aspect of any city as it reflects the culture, history, and values of a community. Vancouver is known for its vibrant and diverse arts scene, and as a result, it has a plethora of public art installations that locals and tourists can explore. However, apart from some well-known museums that gather art collections together, with so many public art installations scattered throughout the city, it can be difficult for tourists to find the art they are interested in. As a result, we want to provide tourists with a centralized location to find information on public art in Vancouver.
 
-Link to the original [proposal] (https://github.com/UBC-MDS/VanArt/blob/main/reports/proposal.md)
+This dashboard is a lighter version of the original [VanArt RShiny](https://github.com/UBC-MDS/VanArt) app and the original proposal can be found [here](https://github.com/UBC-MDS/VanArt/blob/main/reports/proposal.md).
+
 ## Usage
 
-Try out the app [here](https://dash-vanart-lite.onrender.com/).
+To try out the app click [here](https://dash-vanart-lite.onrender.com/).
 
-Here are some general instructions on how to use the application:
-(1) When you first view the application, you will notice that the main plot and table are already populated. Options have been selected for you in the `Select an Art Type` and `Select a Neighbourhood` field. This is to assist you with viewing how the application will function. 
+The application displays two main visualizations, a graph and a table. The graph is a stacked bar chart that shows you the number of art types per neighbourhood. While the table displays information on Art Name, Art Type, Neighbourhood, and Address. Both the graph and table will update based on your selection from the dropdown bars at the top. Review the sub-header at the top of the application for some general information about the application. 
 
-(2) Review the header for more information about the application.
+Here are some general instructions on how to use the application:    
+1. When you first view the application, you will notice that the main plot and table are already populated. Options have been selected for you in the `Select an Art Type` and `Select a Neighbourhood` dropdown fields. This is to assist you with viewing how the application will function.  
 
-(3) Then navigate to the `Select an Art Type` drop down list and select all the options you'd like to include for Art Type. You can select as many options as you'd like. This will automatically update the graph and the table. 
+2. Then navigate to the `Select an Art Type` drop down list and select all the options you'd like to include for Art Type. You can select as many options as you'd like. This will automatically update the graph and the table. 
 
-(3) Next in the same row you can also navigate to the dropdown bar on the right titled `Select a Neighbourhood`. Once your preferred options are selected, you can see once again that both the graph and table will get updated. 
+3. Next in the same row you can also navigate to the dropdown bar on the right titled `Select a Neighbourhood`. Once your preferred options are selected, you can see once again that both the graph and table will get updated. 
 
-Enjoy experimenting with all the combinations of art types and neighbourhoods you want!
+Enjoy experimenting with all the combinations of art types and neighbourhoods you want and see what types of public arts you can visit in Vancouver!
 
-## Installation and run locally
+## To Install and Run Locally
 
 To make this app run locally on your computer, please:
 
